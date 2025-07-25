@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PUTO Y PITO CHICO EL QUE LO LEEA</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: black;
+      height: 100%;
+      font-family: sans-serif;
+    }
+
+    .text-line {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      font-size: 32px;
+      color: #00FFFF; /* Cian claro */
+      animation: drop 5s linear forwards;
+      white-space: nowrap;
+      pointer-events: none;
+      letter-spacing: 20px; /* Separación entre letras */
+    }
+
+    @keyframes drop {
+      from {
+        top: -50px;
+        opacity: 0;
+      }
+      to {
+        top: 100%;
+        opacity: 1;
+      }
+    }
+
+    .explosion {
+      position: absolute;
+      color: #FF4500; /* Naranja fuerte */
+      font-size: 42px;
+      font-weight: bold;
+      pointer-events: none;
+      animation: explode 1s ease-out forwards;
+      white-space: nowrap;
+      letter-spacing: 25px;
+    }
+
+    @keyframes explode {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(3);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<script>
+  function createLine() {
+    const line = document.createElement('div');
+    line.className = 'text-line';
+    line.textContent = 'PUTO Y PITO CHICO EL QUE LO LEEA';
+    line.style.left = `${Math.random() * 50}%`;
+    document.body.appendChild(line);
+
+    setTimeout(() => {
+      line.remove();
+    }, 5000);
+  }
+
+  setInterval(createLine, 400);
+
+  document.addEventListener('click', (e) => {
+    for (let i = 0; i < 6; i++) {
+      const span = document.createElement('div');
+      span.className = 'explosion';
+      span.textContent = 'PUTO Y PITO CHICO EL QUE LO LEEA';
+      span.style.left = `${e.clientX + (Math.random() * 100 - 50)}px`;
+      span.style.top = `${e.clientY + (Math.random() * 100 - 50)}px`;
+      document.body.appendChild(span);
+
+      setTimeout(() => {
+        span.remove();
+      }, 1000);
+    }
+  });
+</script>
+
+</body>
+</html>
